@@ -1,4 +1,5 @@
 @import UIKit;
+@import CoreMotion;
 
 static NSTimeInterval gAppLaunchedAt = 0;
 static BOOL gShouldBlockShakeGesture = YES;
@@ -63,6 +64,13 @@ static BOOL shouldBlockShakeGesture() {
 
 %hook CMMotionManager
 
+- (CMGyroData *)gyroData {
+	if (shouldBlockShakeGesture()) {
+		return nil;
+	}
+	return %orig;
+}
+
 - (void)startAccelerometerUpdates {
     if (shouldBlockShakeGesture()) {
         return;
@@ -124,6 +132,13 @@ static BOOL shouldBlockShakeGesture() {
         return NO;
     }
     return %orig;
+}
+
+- (CMAccelerometerData *)accelerometerData {
+	if (shouldBlockShakeGesture()) {
+		return nil;
+	}
+	return %orig;
 }
 
 %end

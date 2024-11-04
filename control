@@ -1,6 +1,6 @@
 Package: io.github.huami1314
 Name: Shake Shield
-Version: 1.0
+Version: 1.0.1
 Architecture: iphoneos-arm
 Description: Save and restore the layout of your icons.
 Maintainer: huami. <99124359+huami1314@users.noreply.github.com>
