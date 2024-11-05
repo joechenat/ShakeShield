@@ -27,10 +27,12 @@ jobs:
 
       - name: Build package
         run: |
-          make
+          make package
+          make package THEOS_SCHEME=rootless
 
       - name: Upload specific Deb packages
         uses: actions/upload-artifact@v4.3.3
         with:
           name: ShakeShield
-          path: ${{ github.workspace }}/.theos/obj/debug/*.dylib
+          path: ${{ github.workspace }}/.theos/obj/debug/*.dylib 
+                ${{ github.workspace }}/Packages/*.deb
